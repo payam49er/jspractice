@@ -19,10 +19,10 @@ const ItemCtrl = (function(){
             id:0, name: 'Steak Dinner',calories:1200
         },
         {
-            id:0, name: 'Cookie',calories:400
+            id:1, name: 'Cookie',calories:400
         },
         {
-            id:0, name: 'Eggs',calories:300
+            id:2, name: 'Eggs',calories:300
         }
     ],
         currentItem: null,
@@ -41,15 +41,11 @@ const ItemCtrl = (function(){
             }else{
                 ID = 0;
             }
-
             //calories to number
-
             calories = parseInt(calories);
-
             //create new item
             newItem = new Item(ID,name,calories);
             data.items.push(newItem);
-
             return newItem;
         },
         logData: function(){
@@ -107,7 +103,6 @@ const App = (function(ItemCtrl,UICtrl){
     //load event listeners
     const eventListeners = function(){
         const UISelectors = UICtrl.getSelectors();
-
         //Add Item event
         document.querySelector(UISelectors.addBtn).addEventListener('click',itemAddSubmit);
     }
@@ -116,7 +111,7 @@ const App = (function(ItemCtrl,UICtrl){
     const itemAddSubmit = function(e){
         //get form input from UI Ctrl
         const input = UICtrl.getItemInput();
-        if(input.name !== '' && input.calories !== ''){
+        if (input.name !== '' && input.calories !== ''){
             const newItem = ItemCtrl.addItem(input.name, input.calories);
         }
         e.preventDefault();
